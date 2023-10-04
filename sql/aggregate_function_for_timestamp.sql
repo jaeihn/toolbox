@@ -1,3 +1,4 @@
+
 CREATE OR REPLACE FUNCTION timestamp_latest_transition(
   _this timestamptz, _next timestamptz, OUT _latest timestamptz)
 LANGUAGE plpgsql AS
@@ -25,7 +26,7 @@ LANGUAGE plpgsql AS
 $func$
 BEGIN
 	if _next is null then
-		_ = _this;
+		_earliest = _this;
 	elseif LEAST(_this, _next) = _this then
 		_earliest = _this;
 	elseif LEAST(_this, _next) = _next then
